@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a993729e-4bda-42ed-b279-07299b5114b1" name="Default Changelist" comment="" />
+    <list default="true" id="a993729e-4bda-42ed-b279-07299b5114b1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Pathfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pathfinder.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +36,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="10" />
-          <entry key="py" value="2534" />
+          <entry key="py" value="2539" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2544" />
+          <entry key="Python" value="2549" />
         </counts>
       </usages-collector>
     </session>
@@ -49,13 +51,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pathfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="85" column="28" lean-forward="true" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+            <state relative-caret-position="351">
+              <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
               <folding>
                 <element signature="e#0#83#0" expanded="true" />
-                <marker date="1540846336675" expanded="true" signature="581:657" ph="..." />
-                <marker date="1540846336675" expanded="true" signature="1572:1613" ph="..." />
-                <marker date="1540846336675" expanded="true" signature="2044:2507" ph="..." />
+                <marker date="1540846699724" expanded="true" signature="581:657" ph="..." />
+                <marker date="1540846699724" expanded="true" signature="1572:1613" ph="..." />
+                <marker date="1540846699724" expanded="true" signature="2044:2519" ph="..." />
               </folding>
             </state>
           </provider>
@@ -172,13 +174,13 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Pathfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="85" column="28" lean-forward="true" selection-start-line="85" selection-start-column="28" selection-end-line="85" selection-end-column="28" />
+        <state relative-caret-position="351">
+          <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
-            <marker date="1540846336675" expanded="true" signature="581:657" ph="..." />
-            <marker date="1540846336675" expanded="true" signature="1572:1613" ph="..." />
-            <marker date="1540846336675" expanded="true" signature="2044:2507" ph="..." />
+            <marker date="1540846699724" expanded="true" signature="581:657" ph="..." />
+            <marker date="1540846699724" expanded="true" signature="1572:1613" ph="..." />
+            <marker date="1540846699724" expanded="true" signature="2044:2519" ph="..." />
           </folding>
         </state>
       </provider>

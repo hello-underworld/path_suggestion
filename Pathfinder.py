@@ -82,7 +82,7 @@ class Pathfinder:
         """
 
         struct = self.cc.structure.as_dict()
-        inserts = self.only_li_struct.as_dict()['sites'][0]
+        inserts = self.only_li_struct.as_dict()['sites'][index_numbers]
         struct['sites'].append(inserts)
         return Structure.from_dict(struct)
 
