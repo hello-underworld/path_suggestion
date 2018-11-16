@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a993729e-4bda-42ed-b279-07299b5114b1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/test-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/test-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pathfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pathfinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V4Cr4O12_populated.vasp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/test.ipynb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,13 +18,13 @@
     <session id="2058087784">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.4" value="2" />
+          <entry key="project.open.time.4" value="5" />
           <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.6" value="2" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -36,12 +40,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="10" />
-          <entry key="py" value="2539" />
+          <entry key="py" value="2670" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2549" />
+          <entry key="Python" value="2680" />
         </counts>
       </usages-collector>
     </session>
@@ -51,13 +55,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Pathfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
+            <state relative-caret-position="98">
+              <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
               <folding>
                 <element signature="e#0#83#0" expanded="true" />
-                <marker date="1540846699724" expanded="true" signature="581:657" ph="..." />
-                <marker date="1540846699724" expanded="true" signature="1572:1613" ph="..." />
-                <marker date="1540846699724" expanded="true" signature="2044:2519" ph="..." />
+                <marker date="1541454792185" expanded="true" signature="583:757" ph="..." />
+                <marker date="1541454792185" expanded="true" signature="707:757" ph="..." />
+                <marker date="1541454792185" expanded="true" signature="1672:1713" ph="..." />
+                <marker date="1541454792185" expanded="true" signature="2145:2620" ph="..." />
               </folding>
             </state>
           </provider>
@@ -72,6 +77,7 @@
       <find>tmp</find>
       <find>fully_li</find>
       <find>fully_li_struct</find>
+      <find>only_li</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -86,8 +92,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -146,7 +153,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16188198" />
@@ -161,7 +168,7 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49920255" weight="0.32911393" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.22496371" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50079745" side_tool="true" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50079745" side_tool="true" visible="true" weight="0.37925446" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3280116" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -174,13 +181,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Pathfinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="84" column="52" selection-start-line="84" selection-start-column="52" selection-end-line="84" selection-end-column="52" />
+        <state relative-caret-position="98">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
-            <marker date="1540846699724" expanded="true" signature="581:657" ph="..." />
-            <marker date="1540846699724" expanded="true" signature="1572:1613" ph="..." />
-            <marker date="1540846699724" expanded="true" signature="2044:2519" ph="..." />
+            <marker date="1541454792185" expanded="true" signature="583:757" ph="..." />
+            <marker date="1541454792185" expanded="true" signature="707:757" ph="..." />
+            <marker date="1541454792185" expanded="true" signature="1672:1713" ph="..." />
+            <marker date="1541454792185" expanded="true" signature="2145:2620" ph="..." />
           </folding>
         </state>
       </provider>

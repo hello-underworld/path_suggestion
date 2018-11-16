@@ -1,7 +1,8 @@
-from LiSiteAnalyzer import LiSiteAnalyzer #make sure that this module can be called
+from pymatgen.analysis.defects.utils import ChargeDensityAnalyzer 
 from pymatgen import Structure
 from pymatgen.io.vasp.outputs import Chgcar
 from pymatgen.analysis.local_env import CrystalNN
+
 
 class Pathfinder:
 
@@ -9,7 +10,7 @@ class Pathfinder:
     Provides a method to find a path way for Li ions to diffuse to the next periodic spot in a given structure
     """
 
-    def __init__(self,cc):
+    def __init__(self, cc):
 
         """
         Creates a pathfinder.
@@ -24,6 +25,10 @@ class Pathfinder:
         cc = Chgcar.from_file(filename)
         return Pathfinder(cc)
 
+    @staticmethod
+    def from_structure(structure):
+        Pathfinder.only_li_struct=structure
+
     @property
     def prop_struct(self):
 
@@ -34,19 +39,33 @@ class Pathfinder:
             A structure of the original structure with all possible sites filled with Li and the position index of Li atoms
         """
 
-        sites = LiSiteAnalyzer(self.cc)
-        sites.get_local_extrema()
-        sites.extrema_df
+        CDA = ChargeDensityAnalyzer(self.cc)
+        CDA.get_local_extrema()
+        CDA.extrema_df
         try:
-            sites.cluster_nodes()
+            CDA.cluster_nodes()
         except:
             pass
-        sites.get_Li_site_order()
-        all_sites = sites._extrema_df
+        CDA.sort_sites_by_integrated_chg()
+        all_sites = CDA._extrema_df
 
-        pos_ints = [u for u in all_sites['site_pos_integrated'] if u <= (min(all_sites['site_pos_integrated']) + 0.2)]
+        pos_ints = [u for u in all_sites['Int. Charge Density'] if u <= (min(all_sites['Int. Charge Density'])*5)]
         num_possible_li = len(pos_ints)
-        fully_li_struct, li_pos = sites.populate_Li(nsites=num_possible_li)
+        big_struct = CDA.get_structure_with_nodes()
+
+        ori_struct = self.cc.structure
+        dict_info = ori_struct.as_dict()
+        dict_info['sites'].extend(big_struct.as_dict()['sites'][len(ori_struct):len(ori_struct) + num_possible_li])
+
+        li_pos = []
+        for one_specie in dict_info['sites']:
+            if one_specie['label'] == 'X0+':
+                one_specie['label'] = 'Li'
+                one_specie['species'][0]['element'] = 'Li'
+                one_specie['species'][0].pop('oxidation_state')
+                li_pos.append(one_specie['abc'])
+
+        fully_li_struct = Structure.from_dict(dict_info)
 
         return fully_li_struct, li_pos
 
@@ -73,7 +92,7 @@ class Pathfinder:
 
         return only_li_struct
 
-    def partially_li_struct(self,index_numbers):
+    def partially_li_struct(self, index_numbers):
 
         """
         Generates a structure that is partially lithiated with Li atoms at indicated index numbers.
@@ -86,7 +105,7 @@ class Pathfinder:
         struct['sites'].append(inserts)
         return Structure.from_dict(struct)
 
-    def dict_info_nn(self,only_li_struct=None,cutoff_r=5):
+    def dict_info_nn(self, only_li_struct=None, cutoff_r=5):
 
         """
         Creates a list of dictionaries recording all neighbor information for all Li in only_li_struct.
@@ -105,25 +124,25 @@ class Pathfinder:
         if only_li_struct == None:
             only_li_struct = self.only_li_struct
 
-        for i in range(0,len(only_li_struct)):
+        for i in range(0, len(only_li_struct)):
             info = {}
-            info['position'] = [0,0,0,i]
+            info['position'] = [0, 0, 0, i]
             info['neighbors'] = []
-            
-            for j in NN.get_nn_info(only_li_struct,i):
+
+            for j in NN.get_nn_info(only_li_struct, i):
                 entry = list(j['image'])
                 entry.append(j['site_index'])
                 info['neighbors'].append(entry)
 
-            if (only_li_struct.lattice.a)<=cutoff_r:
+            if only_li_struct.lattice.a <= cutoff_r:
                 peri_self = info['position'][:]
                 peri_self[0] = 1
                 info['neighbors'].append(peri_self)
-            if (only_li_struct.lattice.b)<=cutoff_r:
+            if only_li_struct.lattice.b <= cutoff_r:
                 peri_self = info['position'][:]
                 peri_self[1] = 1
                 info['neighbors'].append(peri_self)
-            if (only_li_struct.lattice.c)<=cutoff_r:
+            if only_li_struct.lattice.c <= cutoff_r:
                 peri_self = info['position'][:]
                 peri_self[2] = 1
                 info['neighbors'].append(peri_self)
@@ -146,14 +165,14 @@ class Pathfinder:
         """
 
         all_paths = []
-        next_p_site = [0,0,0,0]
+        next_p_site = [0, 0, 0, 0]
         next_p_site[direction] = 1
         len_n1_paths = []
         for i in len_n_paths:
-            for a in range(0,len(neighbors_data[i[-1][-1]]['neighbors'])):
+            for a in range(0, len(neighbors_data[i[-1][-1]]['neighbors'])):
                 next_step = neighbors_data[i[-1][-1]]['neighbors'][a][:]
                 path = i[:]
-                for x in range(0,3):
+                for x in range(0, 3):
                     next_step[x] += path[-1][x]
                 if max(next_step[0:3]) <= 1 and min(next_step[0:3]) >= -1:
                     if (next_step not in path[:]) and next_step[direction] >= 0:
@@ -166,10 +185,10 @@ class Pathfinder:
         return len_n1_paths, all_paths
 
     def eligible_paths(self, only_li_struct, neighbors_data, num_steps=None, direction=0):
-        
+
         """
         Counts all the eligible paths up to the number of steps set in the argument.
-        
+
         Args: only_li_struct: the structure that only contains Li atoms.
             num_steps: maximum number of steps set to find eligible paths. Default is number of Li atoms in structure.
             neighbors_data: the list of dictionaries that have all neighbors data stored.
@@ -177,20 +196,20 @@ class Pathfinder:
 
         Returns:
             All eligible paths that lead to the next periodic site in the set direction within max number of steps.
-        
+
         """
 
-        if num_steps==None:
-            num_steps=len(only_li_struct)
+        if num_steps is None:
+            num_steps = len(only_li_struct)
 
         eligible_paths = []
         current_path = []
-        for i in range(0,len(only_li_struct)):
-            current_path.append([[0,0,0,i]]) #create all length 0 paths
-        for n in range(0,num_steps):
-            [current_path,all_paths] = self.one_more_step(current_path,direction,neighbors_data)
+        for i in range(0, len(only_li_struct)):
+            current_path.append([[0, 0, 0, i]]) #create all length 0 paths
+        for n in range(0, num_steps):
+            [current_path, all_paths] = self.one_more_step(current_path, direction, neighbors_data)
             eligible_paths.extend(all_paths)
-        
+
         return eligible_paths
 
     def paths_in_index(self, num_steps=None, direction=0, cutoff_r=5, site_index=None):
@@ -206,7 +225,6 @@ class Pathfinder:
             A list of paths to next periodic site indicated by [a,b,c,i] where a,b,c is the image of the position and i is the site index
 
         """
-
 
         only_li_struct = self.only_li_struct
 
